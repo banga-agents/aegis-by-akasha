@@ -19,6 +19,8 @@ Workflow path:
 5. CRE writes the signed report on Sepolia and returns a transaction hash
 
 Verified evidence in this repo:
+- Public repo:
+  - `https://github.com/banga-agents/aegis-by-akasha`
 - Successful simulation:
   - `logs/simulate-staging-rerun.log`
 - Deterministic fixture reruns with identical event hash:

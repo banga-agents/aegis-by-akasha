@@ -12,7 +12,7 @@
 - [x] Moltbook draft prepared
 - [x] Demo script prepared
 - [x] Winner plan prepared
-- [ ] Public repo finalized and published
+- [x] Public repo finalized and published
 - [ ] Submission post published in `m/chainlink-official`
 - [ ] Google form submitted by operator
 
