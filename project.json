@@ -1,0 +1,18 @@
+{
+  "project_id": 7,
+  "name": "Chainlink-CRE-Hackathon-Submission",
+  "lane": "operator",
+  "workspace_root": "/home/agent/akasha-workspaces",
+  "workspace_path": "/home/agent/akasha-workspaces/p0007-chainlink-cre-hackathon-submission",
+  "scaffolded_at": "2026-03-05T03:59:39.104998+00:00",
+  "folders": [
+    "research",
+    "logs",
+    "data",
+    "docs",
+    "prototypes",
+    "mvp",
+    "code",
+    "reports"
+  ]
+}

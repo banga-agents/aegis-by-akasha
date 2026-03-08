@@ -1,0 +1,11 @@
+Initializing...
+Checking RPC connectivity...
+Compiling workflow...
+✓ Workflow compiled
+Failed to create engine: failed to execute subscribe: error while executing at wasm backtrace:
+    0: 0xac89c - <unknown>!<wasm function 420>
+    1: 0x3f943 - <unknown>!<wasm function 54>
+    2: 0xdc7e0 - <unknown>!<wasm function 1265>
+
+Caused by:
+    wasm trap: wasm `unreachable` instruction executed

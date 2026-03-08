@@ -1,0 +1,9 @@
+.aegis-demo.env
+code/cre-risk-monitor/.env
+code/cre-templates/
+code/cre-risk-monitor/my-workflow/node_modules/
+code/cre-risk-monitor/my-workflow/.cre_build_tmp.js
+code/cre-risk-monitor/secrets.yaml
+tmp/
+**/__pycache__/
+*.pyc

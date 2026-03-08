@@ -1,0 +1,14 @@
+{
+  "workflowId": "risk-monitor-v1-api-fail",
+  "schedule": "*/30 * * * * *",
+  "sourceUrl": "https://invalid.example.invalid/nope",
+  "thresholdPct": 3.0,
+  "evms": [
+    {
+      "tokenAddress": "0x4700A50d858Cb281847ca4Ee0938F80DEfB3F1dd",
+      "proxyAddress": "0x696A180a2A1F5EAC7014D4ab4891CCB4184275fF",
+      "chainSelectorName": "ethereum-testnet-sepolia",
+      "gasLimit": "1000000"
+    }
+  ]
+}

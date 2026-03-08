@@ -1,0 +1,9 @@
+Initializing...
+Checking RPC connectivity...
+Compiling workflow...
+✓ Workflow compiled
+2026-03-05T15:01:23Z [SIMULATION] Simulator Initialized
+
+2026-03-05T15:01:23Z [SIMULATION] Running trigger trigger=cron-trigger@1.0.0
+✗ Workflow execution failed:
+Capability 'consensus@1.0.0-alpha' method 'Simple' returned an error: failed to execute capability: [2]Unknown: Market ingest failed with no fallback: Capability 'http-actions@1.0.0-alpha' method 'SendRequest' returned an error: failed to execute capability: [2]Unknown: Get "https://invalid.example.invalid/nope": dial tcp: lookup invalid.example.invalid on 100.100.100.100:53: no such host

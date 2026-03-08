@@ -1,0 +1,19 @@
+Initializing...
+Checking RPC connectivity...
+Compiling workflow...
+✓ Workflow compiled
+2026-03-05T15:01:34Z [SIMULATION] Simulator Initialized
+
+2026-03-05T15:01:34Z [SIMULATION] Running trigger trigger=cron-trigger@1.0.0
+2026-03-05T15:01:35Z [USER LOG] risk_decision={
+  "source": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true",
+  "timestamp": "2026-03-05T15:01:35.056Z",
+  "metric": 1.2565442519213834,
+  "threshold": 3,
+  "level": "low",
+  "rationale": "24h BTC change=1.2565 threshold=3.0000",
+  "confidence": 0.88
+}
+2026-03-05T15:01:35Z [USER LOG] event_hash=0xef020141b19b048d154fddef97bad4f53c4c13b7c66d781a87427ef87ba5d203
+✗ Workflow execution failed:
+Capability 'evm:ChainSelector:16015286601757825753@1.0.0' method 'WriteReport' returned an error: failed to execute capability: [2]Unknown: insufficient funds for gas * price + value: balance 0, tx cost 1000020000000, overshot 1000020000000

@@ -1,0 +1,30 @@
+Initializing...
+Checking RPC connectivity...
+Compiling workflow...
+✓ Workflow compiled
+2026-03-05T14:59:41Z [SIMULATION] Simulator Initialized
+
+2026-03-05T14:59:41Z [SIMULATION] Running trigger trigger=cron-trigger@1.0.0
+2026-03-05T14:59:42Z [USER LOG] risk_decision={
+  "source": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true",
+  "timestamp": "2026-03-05T14:59:42.031Z",
+  "metric": 1.137236057934218,
+  "threshold": 3,
+  "level": "low",
+  "rationale": "24h BTC change=1.1372 threshold=3.0000",
+  "confidence": 0.88
+}
+2026-03-05T14:59:42Z [USER LOG] event_hash=0x63706523ada5e1a67157f07de398ef14b8ce679d194fb57e0c86fd45072b01a0
+2026-03-05T14:59:42Z [USER LOG] tx_hash=0x0000000000000000000000000000000000000000000000000000000000000000
+
+✓ Workflow Simulation Result:
+"{\n  \"workflowId\": \"risk-monitor-v1\",\n  \"decision\": {\n    \"source\": \"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin\u0026vs_currencies=usd\u0026include_24hr_change=true\",\n    \"timestamp\": \"2026-03-05T14:59:42.031Z\",\n    \"metric\": 1.137236057934218,\n    \"threshold\": 3,\n    \"level\": \"low\",\n    \"rationale\": \"24h BTC change=1.1372 threshold=3.0000\",\n    \"confidence\": 0.88\n  },\n  \"eventHash\": \"0x63706523ada5e1a67157f07de398ef14b8ce679d194fb57e0c86fd45072b01a0\",\n  \"txHash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"\n}"
+
+2026-03-05T14:59:42Z [SIMULATION] Execution finished signal received
+2026-03-05T14:59:42Z [SIMULATION] Skipping WorkflowEngineV2
+
+╭──────────────────────────────────────────────────────╮
+│ Simulation complete! Ready to deploy your workflow?  │
+│                                                      │
+│ Run cre account access to request deployment access. │
+╰──────────────────────────────────────────────────────╯

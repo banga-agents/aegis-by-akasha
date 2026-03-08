@@ -1,0 +1,30 @@
+Initializing...
+Checking RPC connectivity...
+Compiling workflow...
+✓ Workflow compiled
+2026-03-05T15:00:06Z [SIMULATION] Simulator Initialized
+
+2026-03-05T15:00:06Z [SIMULATION] Running trigger trigger=cron-trigger@1.0.0
+2026-03-05T15:00:06Z [USER LOG] risk_decision={
+  "source": "fixture://btc",
+  "timestamp": "2026-03-05T00:00:00.000Z",
+  "metric": -6.25,
+  "threshold": 3,
+  "level": "high",
+  "rationale": "24h BTC change=-6.2500 threshold=3.0000",
+  "confidence": 0.88
+}
+2026-03-05T15:00:06Z [USER LOG] event_hash=0x71eed900a2b5ce90b9e3a6e2b9ce4cd817b2c8bc16612451820fc99fa25de28e
+2026-03-05T15:00:06Z [USER LOG] tx_hash=0x0000000000000000000000000000000000000000000000000000000000000000
+
+✓ Workflow Simulation Result:
+"{\n  \"workflowId\": \"risk-monitor-v1-fixture\",\n  \"decision\": {\n    \"source\": \"fixture://btc\",\n    \"timestamp\": \"2026-03-05T00:00:00.000Z\",\n    \"metric\": -6.25,\n    \"threshold\": 3,\n    \"level\": \"high\",\n    \"rationale\": \"24h BTC change=-6.2500 threshold=3.0000\",\n    \"confidence\": 0.88\n  },\n  \"eventHash\": \"0x71eed900a2b5ce90b9e3a6e2b9ce4cd817b2c8bc16612451820fc99fa25de28e\",\n  \"txHash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"\n}"
+
+2026-03-05T15:00:06Z [SIMULATION] Execution finished signal received
+2026-03-05T15:00:06Z [SIMULATION] Skipping WorkflowEngineV2
+
+╭──────────────────────────────────────────────────────╮
+│ Simulation complete! Ready to deploy your workflow?  │
+│                                                      │
+│ Run cre account access to request deployment access. │
+╰──────────────────────────────────────────────────────╯

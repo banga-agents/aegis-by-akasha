@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aegis by Akasha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="backdrop" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="mesh"></div>
+    </div>
+
+    <main class="app-shell">
+      <header class="hero">
+        <div class="hero-copy panel">
+          <p class="eyebrow">Chainlink CRE Autonomous Agents Track</p>
+          <h1>Aegis by Akasha</h1>
+          <p class="lede">
+            An operator-facing treasury guardian built on Chainlink CRE. It
+            watches external market stress, applies a deterministic policy,
+            anchors the decision on Sepolia, and routes the result across real
+            Akasha channels.
+          </p>
+          <div class="hero-tags">
+            <span class="tag-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4v16M7 7l10 10M17 7 7 17"/></svg>
+              <span>Deterministic policy</span>
+            </span>
+            <span class="tag-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M7 9l5-5 5 5M7 15l5 5 5-5"/></svg>
+              <span>Sepolia anchor</span>
+            </span>
+            <span class="tag-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14v10H5zM8 10h8M8 14h5"/></svg>
+              <span>Moltbook live</span>
+            </span>
+            <span class="tag-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="7"/></svg>
+              <span>Telegram ready</span>
+            </span>
+            <span class="tag-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12v10H6zM9 11h6M9 15h4"/></svg>
+              <span>Akasha chat proxy</span>
+            </span>
+          </div>
+        </div>
+
+        <section class="hero-side panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Demo readiness</p>
+              <h2>Live system health</h2>
+            </div>
+            <button id="refresh-live" class="ghost-button" type="button">
+              <span class="button-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0 2 5.5M20 4v7h-7"/></svg>
+              </span>
+              <span>Refresh</span>
+            </button>
+          </div>
+          <div class="stat-grid">
+            <article class="stat-card">
+              <div class="stat-head">
+                <span class="mini-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4v16"/></svg>
+                </span>
+                <span class="stat-label">Proof states</span>
+              </div>
+              <strong class="stat-value">5</strong>
+            </article>
+            <article class="stat-card">
+              <div class="stat-head">
+                <span class="mini-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M6 9l6-6 6 6M6 15l6 6 6-6"/></svg>
+                </span>
+                <span class="stat-label">Real on-chain writes</span>
+              </div>
+              <strong class="stat-value">1</strong>
+            </article>
+            <article class="stat-card">
+              <div class="stat-head">
+                <span class="mini-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-2.7 7-7 9-4.3-2-7-4.5-7-9V6z"/></svg>
+                </span>
+                <span class="stat-label">Failure guards</span>
+              </div>
+              <strong class="stat-value">2</strong>
+            </article>
+            <article class="stat-card">
+              <div class="stat-head">
+                <span class="mini-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+                </span>
+                <span class="stat-label">Operator surfaces</span>
+              </div>
+              <strong class="stat-value">5</strong>
+            </article>
+          </div>
+          <div id="hero-live-grid" class="hero-live-grid"></div>
+        </section>
+      </header>
+
+      <section class="command-bar panel">
+        <div>
+          <p class="eyebrow">Proof states</p>
+          <h2>Switch the scenario, keep the story clean</h2>
+        </div>
+          <div class="command-actions">
+          <button id="autoplay-toggle" class="ghost-button" type="button">
+            <span class="button-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14l12-7z"/></svg>
+            </span>
+            <span id="autoplay-label">Autoplay: Off</span>
+          </button>
+        </div>
+      </section>
+
+      <div id="scenario-strip" class="scenario-strip" aria-label="Scenario picker"></div>
+
+      <nav class="main-tabs" aria-label="Aegis tabs">
+        <button class="main-tab is-active" type="button" data-tab="mission">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3 7.5-8 9-5-1.5-8-4-8-9V7z"/></svg>
+          </span>
+          <span>Mission Control</span>
+        </button>
+        <button class="main-tab" type="button" data-tab="proof">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16H7zM9.5 9h5M9.5 13h5M9.5 17h3"/></svg>
+          </span>
+          <span>Proof Board</span>
+        </button>
+        <button class="main-tab" type="button" data-tab="channels">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12M6 12h12M7.5 7.5l9 9M16.5 7.5l-9 9"/></svg>
+          </span>
+          <span>Channel Grid</span>
+        </button>
+        <button class="main-tab" type="button" data-tab="policy">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M12 5v14M18 5v14"/><circle cx="6" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="18" cy="10" r="2"/></svg>
+          </span>
+          <span>Policy Lab</span>
+        </button>
+        <button class="main-tab" type="button" data-tab="live">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/><circle cx="12" cy="12" r="7"/></svg>
+          </span>
+          <span>Live Akasha</span>
+        </button>
+      </nav>
+
+      <section class="tab-panel is-active" data-tab-panel="mission">
+        <div class="mission-layout">
+          <article class="panel mission-map-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Current scenario</p>
+                <h2 id="mission-title"></h2>
+              </div>
+              <span id="mission-status-pill" class="status-pill">Broadcast</span>
+            </div>
+            <p id="mission-summary" class="muted"></p>
+            <div class="system-map-wrap">
+              <div class="system-map">
+                <div class="core-node">
+                  <span class="core-code">AEGIS</span>
+                  <strong id="mission-risk-label">LOW RISK</strong>
+                  <small id="mission-mode-detail"></small>
+                </div>
+                <div class="orbit-node orbit-observe" data-stage="observe"></div>
+                <div class="orbit-node orbit-decide" data-stage="decide"></div>
+                <div class="orbit-node orbit-encode" data-stage="encode"></div>
+                <div class="orbit-node orbit-anchor" data-stage="anchor"></div>
+                <div class="orbit-node orbit-verify" data-stage="verify"></div>
+                <div class="system-ring system-ring-a"></div>
+                <div class="system-ring system-ring-b"></div>
+              </div>
+              <div id="mission-stage-note" class="graphic-note"></div>
+            </div>
+          </article>
+
+          <article class="panel mission-gauge-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Treasury posture</p>
+                <h2>Decision gauge</h2>
+              </div>
+            </div>
+            <div class="gauge-block">
+              <div id="risk-gauge" class="risk-gauge">
+                <span id="risk-gauge-label" class="risk-gauge-label"></span>
+                <small id="risk-gauge-detail" class="risk-gauge-detail"></small>
+              </div>
+              <div class="signal-stack">
+                <div class="signal-card">
+                  <span class="signal-label">Observed move</span>
+                  <strong id="mission-metric"></strong>
+                </div>
+                <div class="signal-card">
+                  <span class="signal-label">Threshold</span>
+                  <strong id="mission-threshold"></strong>
+                </div>
+                <div class="signal-card">
+                  <span class="signal-label">Confidence</span>
+                  <strong id="mission-confidence"></strong>
+                </div>
+              </div>
+            </div>
+            <div class="band-chart">
+              <div class="band-zone high"></div>
+              <div class="band-zone medium"></div>
+              <div class="band-zone low"></div>
+              <div class="band-zone medium"></div>
+              <div class="band-zone high"></div>
+              <div id="band-marker" class="band-marker"></div>
+            </div>
+            <div class="band-scale">
+              <span>-2x</span>
+              <span>-1x</span>
+              <span>0</span>
+              <span>+1x</span>
+              <span>+2x</span>
+            </div>
+            <p id="mission-policy-caption" class="muted"></p>
+          </article>
+        </div>
+
+        <div class="two-panel-layout">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Narrative</p>
+                <h2>Why this scene matters</h2>
+              </div>
+            </div>
+            <h3 id="mission-focus-title" class="subhead"></h3>
+            <p id="mission-focus-text" class="muted"></p>
+            <ul id="mission-bullets" class="bullet-list"></ul>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Live integrations</p>
+                <h2>What is actually online</h2>
+              </div>
+            </div>
+            <div id="mission-live-cards" class="live-card-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="proof">
+        <div class="proof-layout">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Execution rail</p>
+                <h2>Observe to verify</h2>
+              </div>
+            </div>
+            <div id="proof-waterfall" class="proof-waterfall"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Replay</p>
+                <h2>Timeline and verdict</h2>
+              </div>
+            </div>
+            <div id="proof-timeline" class="proof-timeline"></div>
+          </article>
+
+          <article class="panel proof-cockpit">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Evidence cockpit</p>
+                <h2>Hashes, txs, and logs</h2>
+              </div>
+            </div>
+            <div class="proof-grid">
+              <div class="proof-card">
+                <span class="signal-label">Workflow ID</span>
+                <strong id="proof-workflow-id"></strong>
+              </div>
+              <div class="proof-card">
+                <span class="signal-label">Decision</span>
+                <strong id="proof-decision"></strong>
+              </div>
+              <div class="proof-card">
+                <span class="signal-label">Evidence state</span>
+                <strong id="proof-evidence-state"></strong>
+              </div>
+              <div class="proof-card wide">
+                <span class="signal-label">Event hash</span>
+                <strong id="proof-event-hash" class="hash"></strong>
+              </div>
+              <div class="proof-card wide">
+                <span class="signal-label">Tx hash</span>
+                <strong id="proof-tx-hash" class="hash"></strong>
+                <a id="proof-tx-link" class="text-link" href="#" target="_blank" rel="noreferrer">
+                  Open explorer
+                </a>
+              </div>
+              <div class="proof-card wide">
+                <span class="signal-label">Command</span>
+                <code id="proof-command" class="inline-code"></code>
+              </div>
+              <div class="proof-card wide">
+                <span class="signal-label">Evidence path</span>
+                <strong id="proof-evidence-path"></strong>
+              </div>
+            </div>
+            <p id="proof-note" class="muted"></p>
+            <pre id="proof-log" class="log-card"></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="channels">
+        <div class="channels-layout">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Channel topology</p>
+                <h2>How Aegis reaches operators</h2>
+              </div>
+            </div>
+            <div class="channel-topology">
+              <div class="channel-core">
+                <span>Aegis</span>
+                <small>decision router</small>
+              </div>
+              <div class="channel-node channel-dashboard">Dashboard</div>
+              <div class="channel-node channel-telegram">Telegram</div>
+              <div class="channel-node channel-chat">Chat</div>
+              <div class="channel-node channel-email">Email</div>
+              <div class="channel-ring ring-a"></div>
+              <div class="channel-ring ring-b"></div>
+            </div>
+            <p class="graphic-note">
+              The point is not to spam every surface. Aegis uses each channel for
+              a different job: interrupt, inspect, explain, and archive.
+            </p>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Dispatch view</p>
+                <h2>Per-channel preview</h2>
+              </div>
+            </div>
+            <div id="channel-cards" class="channel-cards"></div>
+          </article>
+        </div>
+
+        <div class="two-panel-layout">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Telegram path</p>
+                <h2>Live test alert</h2>
+              </div>
+            </div>
+            <p id="telegram-preview" class="muted"></p>
+            <div class="button-row">
+              <button id="telegram-send" class="primary-button" type="button">
+                <span class="button-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 20 4l-5 16-3.5-5-4.5-1.5zM11.5 15l8.5-11"/></svg>
+                </span>
+                <span>Send Test Alert</span>
+              </button>
+              <span id="telegram-result" class="inline-status"></span>
+            </div>
+            <p class="muted">
+              The Telegram bot can only send to chats that have already started a
+              conversation with it.
+            </p>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Off-platform proof</p>
+                <h2>Moltbook and explorer links</h2>
+              </div>
+            </div>
+            <div id="channel-proof-links" class="link-stack"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="policy">
+        <div class="policy-layout">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Controls</p>
+                <h2>Policy knobs for the demo</h2>
+              </div>
+            </div>
+            <label class="control-group" for="threshold-slider">
+              <span>Decision threshold</span>
+              <div class="slider-row">
+                <input id="threshold-slider" type="range" min="1" max="8" step="0.25" value="3" />
+                <strong id="threshold-output"></strong>
+              </div>
+            </label>
+
+            <div class="mode-toggle">
+              <button class="mode-button is-active" type="button" data-mode="broadcast">
+                <span class="button-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+                <span>Broadcast</span>
+              </button>
+              <button class="mode-button" type="button" data-mode="dry-run">
+                <span class="button-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z"/><circle cx="12" cy="12" r="2.5"/></svg>
+                </span>
+                <span>Dry run</span>
+              </button>
+            </div>
+
+            <label class="check-row">
+              <input id="approval-toggle" type="checkbox" checked />
+              <span>Require human approval before high-risk broadcast</span>
+            </label>
+
+            <div class="channel-toggle-grid">
+              <label class="toggle-card">
+                <input id="toggle-dashboard" type="checkbox" checked />
+                <span class="toggle-card-label">
+                  <span class="mini-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+                  </span>
+                  <span>Dashboard</span>
+                </span>
+              </label>
+              <label class="toggle-card">
+                <input id="toggle-telegram" type="checkbox" checked />
+                <span class="toggle-card-label">
+                  <span class="mini-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 20 4l-5 16-3.5-5-4.5-1.5zM11.5 15l8.5-11"/></svg>
+                  </span>
+                  <span>Telegram</span>
+                </span>
+              </label>
+              <label class="toggle-card">
+                <input id="toggle-chat" type="checkbox" checked />
+                <span class="toggle-card-label">
+                  <span class="mini-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12v8H9l-3 3z"/></svg>
+                  </span>
+                  <span>Chat</span>
+                </span>
+              </label>
+              <label class="toggle-card">
+                <input id="toggle-email" type="checkbox" checked />
+                <span class="toggle-card-label">
+                  <span class="mini-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4zM5 8l7 6 7-6"/></svg>
+                  </span>
+                  <span>Email</span>
+                </span>
+              </label>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Preview</p>
+                <h2>What policy would do here</h2>
+              </div>
+            </div>
+            <span id="policy-pill" class="status-pill">LOW RISK</span>
+            <h3 id="policy-title" class="subhead"></h3>
+            <p id="policy-summary" class="muted"></p>
+            <div class="preview-band-chart">
+              <div class="band-zone high"></div>
+              <div class="band-zone medium"></div>
+              <div class="band-zone low"></div>
+              <div class="band-zone medium"></div>
+              <div class="band-zone high"></div>
+              <div id="policy-preview-marker" class="band-marker"></div>
+            </div>
+            <div class="policy-delta-grid">
+              <div class="proof-card">
+                <span class="signal-label">Recorded band</span>
+                <strong id="policy-recorded"></strong>
+              </div>
+              <div class="proof-card">
+                <span class="signal-label">Preview band</span>
+                <strong id="policy-preview-band"></strong>
+              </div>
+              <div class="proof-card wide">
+                <span class="signal-label">Dispatch path</span>
+                <strong id="policy-dispatch"></strong>
+              </div>
+            </div>
+            <p id="policy-diff" class="muted"></p>
+            <ul id="policy-actions" class="bullet-list"></ul>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Guardrails</p>
+              <h2>What should never get messy on camera</h2>
+            </div>
+          </div>
+          <div id="policy-guardrails" class="guardrail-grid"></div>
+        </article>
+      </section>
+
+      <section class="tab-panel" data-tab-panel="live">
+        <div class="live-layout">
+          <article class="panel live-status-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Real Akasha</p>
+                <h2>Live stack status</h2>
+              </div>
+            </div>
+            <div id="live-status-cards" class="live-card-grid"></div>
+          </article>
+
+          <article class="panel live-chat-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Ask Akasha</p>
+                <h2>Real dashboard chat route</h2>
+              </div>
+              <span id="chat-meta" class="inline-status">Ready</span>
+            </div>
+            <div id="live-chat-thread" class="chat-thread"></div>
+            <div id="live-chat-prompts" class="prompt-row"></div>
+            <div class="chat-input-row">
+              <textarea
+                id="live-chat-input"
+                rows="3"
+                placeholder="Ask Akasha to explain the current anchor, summarize the tx, or draft an operator alert."
+              ></textarea>
+              <button id="live-chat-send" class="primary-button" type="button">
+                <span class="button-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M14 6l6 6-6 6"/></svg>
+                </span>
+                <span>Send</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="panel live-action-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Demo actions</p>
+                <h2>One-click prompts</h2>
+              </div>
+            </div>
+            <div id="live-action-buttons" class="action-button-stack"></div>
+            <div class="live-links">
+              <a id="live-post-link" class="text-link" href="#" target="_blank" rel="noreferrer">
+                Open Moltbook post
+              </a>
+              <a id="live-tx-link" class="text-link" href="#" target="_blank" rel="noreferrer">
+                Open Sepolia tx
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
