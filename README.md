@@ -36,12 +36,12 @@ Aegis is built around that principle.
 - `reports/` - winning narrative, Moltbook draft, and demo assets
 
 ## Chainlink Files
-- `code/cre-risk-monitor/my-workflow/main.ts` - CRE workflow logic using Chainlink CRE SDK capabilities
-- `code/cre-risk-monitor/my-workflow/workflow.yaml` - CRE workflow topology and trigger wiring
-- `code/cre-risk-monitor/my-workflow/config.staging.json` - staging config for CRE simulation
-- `code/cre-risk-monitor/my-workflow/config.production.json` - Sepolia broadcast config
-- `code/cre-risk-monitor/scripts/run-simulate.sh` - CRE simulation wrapper
-- `code/cre-risk-monitor/scripts/run-broadcast.sh` - CRE Sepolia broadcast wrapper
+- [`code/cre-risk-monitor/my-workflow/main.ts`](code/cre-risk-monitor/my-workflow/main.ts) - CRE workflow logic using Chainlink CRE SDK capabilities
+- [`code/cre-risk-monitor/my-workflow/workflow.yaml`](code/cre-risk-monitor/my-workflow/workflow.yaml) - CRE workflow topology and trigger wiring
+- [`code/cre-risk-monitor/my-workflow/config.staging.json`](code/cre-risk-monitor/my-workflow/config.staging.json) - staging config for CRE simulation
+- [`code/cre-risk-monitor/my-workflow/config.production.json`](code/cre-risk-monitor/my-workflow/config.production.json) - Sepolia broadcast config
+- [`code/cre-risk-monitor/scripts/run-simulate.sh`](code/cre-risk-monitor/scripts/run-simulate.sh) - CRE simulation wrapper
+- [`code/cre-risk-monitor/scripts/run-broadcast.sh`](code/cre-risk-monitor/scripts/run-broadcast.sh) - CRE Sepolia broadcast wrapper
 
 ## Core Loop
 1. CRE cron trigger starts workflow execution
